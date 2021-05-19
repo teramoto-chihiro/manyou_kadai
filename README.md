@@ -8,7 +8,7 @@
 | label_id(FK) | bigint | ラベルID |
 | title | string | タスク名 |
 | content | text | 内容 |
-| expired_at | datetime | 終了期限 |
+| dedline | datetime | 終了期限 |
 | status | integer | ステータス |
 | priority | integer | 優先順位 |
 
@@ -18,7 +18,7 @@
 | id | bigint | ユーザーID |
 | name | string | ユーザー名 |
 | email | text | メールアドレス |
-| password_digest | string | パスワード |
+| password | string | パスワード |
 
 ### Labelモデル
 | カラム名 | データ型 | 備考 |
