@@ -5,7 +5,8 @@
   <li>
     <p><span class="item_name">タスク名</span> <%= task.title %></p>
        <p><span class="item_name">内容</span> <%= task.content %></p>
-       <p><span class="item_name">終了期限</span> <%= task.deadline %></p>
+       <p><span class="item_name">登録日時</span> <%= l task.created_at, format: :long %></p>
+       <p><span class="item_name">終了期限</span> <%= l task.deadline, format: :long %></p>
        <p class="btns">
          <%= link_to '詳細を確認する', task_path(task.id) %>
          <%= link_to "タスクを編集する", edit_task_path(task.id), data: { confirm: '本当に編集していいですか？' } %>

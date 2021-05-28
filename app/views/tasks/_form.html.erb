@@ -19,7 +19,7 @@
   </div>
   <div class="field">
     <%= form.label :deadline %>
-    <%= form.text_area :deadline %>
+    <%= form.datetime_field :deadline, value: Time.zone.now %>
   </div>
   <div class="actions">
     <%= form.submit %>

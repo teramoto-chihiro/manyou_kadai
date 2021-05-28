@@ -8,9 +8,6 @@
   <div class="field">
     <p><span class="item_name">内容</span> <%= @task.content %></p>
   </div>
-  <div class="field">
-    <p><span class="item_name">終了期限</span> <%= @task.deadline %></p>
-  </div>
   <div class="actions">
     <%= form.submit  "登録する" %>
     <%= form.submit "戻る", name: 'back' %>
