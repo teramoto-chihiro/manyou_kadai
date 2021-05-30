@@ -3,6 +3,11 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.order(created_at: :desc)
+    if params[:sort_expired]
+      @tasks = Task.order(deadline: :desc)
+    else
+      @tasks = Task.order(created_at: :desc)
+    end
   end
   def show
   end
@@ -49,6 +54,6 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
   def task_params
-    params.require(:task).permit(:title, :content)
+    params.require(:task).permit(:title, :content, :deadline)
   end
 end
