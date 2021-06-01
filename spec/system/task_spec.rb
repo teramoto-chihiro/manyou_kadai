@@ -37,7 +37,7 @@ RSpec.describe 'タスク管理機能', type: :system do
   end
   context 'タスクが終了期限の降順に並んでいる場合' do
     it '終了期限の遅いタスクが一番上に表示される' do
-      within '.sort_expired' do
+      within '.sort_deadline' do
         click_on '終了期限でソートする'
       end
       task_list = all('ul li')

@@ -21,6 +21,10 @@
     <%= form.label :deadline %>
     <%= form.datetime_select :deadline %>
   </div>
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.select :status, Task.statuses.keys %>
+  </div>
   <div class="actions">
     <%= form.submit %>
   </div>

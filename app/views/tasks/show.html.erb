@@ -5,6 +5,7 @@
     <p><span class="item_name">内容</span> <%= @task.content %></p>
     <p><span class="item_name">登録日時</span> <%= l @task.created_at, format: :long %></p>
     <p><span class="item_name">終了期限</span> <%= l @task.deadline, format: :long %></p>
+    <p><span class="item_name">ステータス</span> <%= @task.status %></p>
   </li>
 </ul>
 <p><%= link_to 'Back', tasks_path(@task) %></p>
