@@ -4,6 +4,7 @@
   <%= form.hidden_field :content %>
   <%= form.hidden_field :deadline %>
   <%= form.hidden_field :status %>
+  <%= form.hidden_field :priority %>
   <div class="field">
     <p><span class="item_name">タスク名</span> <%= @task.title %></p>
   </div>
@@ -15,6 +16,9 @@
   </div>
   <div class="field">
     <p><span class="item_name">ステータス</span> <%= @task.status %></p>
+  </div>
+  <div class="field">
+  <p><span class="item_name">優先順位</span> <%= @task.priority %></p>
   </div>
   <div class="actions">
     <%= form.submit  "登録する" %>
