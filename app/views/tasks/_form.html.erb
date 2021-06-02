@@ -17,6 +17,18 @@
     <%= form.label :content %>
     <%= form.text_area :content %>
   </div>
+  <div class="field">
+    <%= form.label :deadline %>
+    <%= form.datetime_select :deadline %>
+  </div>
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.select :status, Task.statuses.keys %>
+  </div>
+  <div class="field">
+    <%= form.label :priority %>
+    <%= form.select :priority, Task.priorities.keys %>
+  </div>
   <div class="actions">
     <%= form.submit %>
   </div>

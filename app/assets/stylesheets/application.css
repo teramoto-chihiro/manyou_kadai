@@ -10,6 +10,67 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require bootstrap/dist/css/bootstrap.min
  *= require_tree .
  *= require_self
  */
+
+ .pagination>li>a {
+   border: none;     /*枠線をなくす*/
+   color: #696969;   /*文字の色を変える*/
+ }
+
+ /* 表示しているページ番号のデザイン */
+ .pagination>.active>a {
+   background: #93c9ff;     /*背景の色を変える*/
+   border-radius: 15px;     /*角を丸くする*/
+ }
+
+ .pagination>li>a:hover {
+   border-radius: 15px;
+ }
+
+ .header_area {
+   position: fixed; /* 固定 */
+   top: 0; /* 一番上に表示 */
+   width: 100%; /* 中央に表示 */
+ }
+
+ .header_block {
+   background: #f7a0e8;
+ }
+
+ .header_box {
+   width: 700px;
+   margin: 0 auto;
+ }
+
+ .header_box h1 {
+   margin: 0;
+   padding: 20px 0;
+   font-size: 34px;
+   text-align: center;
+ }
+
+ .footer_area {
+   position: fixed; /* 固定 */
+   bottom: 0; /* 一番下に表示 */
+   width: 100%; /* 中央に表示 */
+ }
+
+ .footer_block {
+   background: #f7a0e8;
+ }
+
+ .footer_box {
+   width: 700px;
+   margin: 0 auto;
+ }
+
+ .footer_box p {
+   margin: 0;
+   padding: 20px 0;
+   font-size: 15px;
+   text-align: center;
+   color: rgb(255, 255, 255);
+ }

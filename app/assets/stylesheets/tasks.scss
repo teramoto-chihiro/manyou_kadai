@@ -1,3 +1,18 @@
 // Place all the styles related to the tasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: rgba(222, 203, 242, 0.41);
+}
+
+ h1 {
+   margin: 0;
+padding: 20px 0;
+font-size: 34px;
+text-align: center;
+   color: rgb(255, 255, 255);
+   font-family:"游ゴシック", "YuGothic", "メイリオ", meiryo, sans-serif;
+ }
