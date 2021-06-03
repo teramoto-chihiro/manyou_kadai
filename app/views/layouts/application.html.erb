@@ -1,16 +1,49 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Manyou</title>
+    <title>TaskApp | タスク管理アプリ</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=2.0,user-scalable=yes">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   </head>
-
   <body>
-    <%= yield %>
+    <header>
+      <div class="header_area">
+          <div class="header_block">
+              <div class="header_box">
+                  <h1>
+                      タスク一覧
+                  </h1>
+              </div>
+          </div>
+      </div>
+    </header>
+    <div class="container main_container">
+      <% flash.each do |key, value| %>
+        <%= content_tag(:div, value, class: "#{key}") %>
+      <% end %>
+      <% if logged_in? %>
+        <%= link_to "Profile", user_path(current_user.id) %>
+        <%= link_to "Logout", session_path(current_user.id), method: :delete %>
+      <% else %>
+        <%= link_to "Sign up", new_user_path %>
+        <%= link_to "Login", new_session_path %>
+      <% end %>
+      <%= yield %>
+    </div>
+    <footer>
+      <div class="footer_area">
+          <div class="footer_block">
+              <div class="footer_box">
+                  <p>
+                      ©tratra
+                  </p>
+              </div>
+          </div>
+      </div>
+    </footer>
   </body>
 </html>

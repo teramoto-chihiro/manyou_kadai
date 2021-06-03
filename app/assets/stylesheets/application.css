@@ -31,9 +31,9 @@
  }
 
  .header_area {
-   position: fixed; /* 固定 */
-   top: 0; /* 一番上に表示 */
-   width: 100%; /* 中央に表示 */
+   /* position: fixed; /* 固定 */
+   /* top: 0; /* 一番上に表示 */ */
+   /* width: 100%; /* 中央に表示 */ */ */
  }
 
  .header_block {
@@ -53,9 +53,9 @@
  }
 
  .footer_area {
-   position: fixed; /* 固定 */
-   bottom: 0; /* 一番下に表示 */
-   width: 100%; /* 中央に表示 */
+   /* position: fixed; /* 固定 */ */
+   /* bottom: 0; /* 一番下に表示 */ */
+   /* width: 100%; /* 中央に表示 */ */
  }
 
  .footer_block {
@@ -74,3 +74,7 @@
    text-align: center;
    color: rgb(255, 255, 255);
  }
+
+.main_container {
+  padding: 40px 0;
+}

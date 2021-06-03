@@ -19,13 +19,16 @@ class TasksController < ApplicationController
       @tasks = Task.order(created_at: :desc).page(params[:page]).per(5)
     end
   end
+
   def show
   end
+
   def new
     @task = Task.new
   end
+
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     if params[:back]
       render :new
     else
@@ -36,8 +39,10 @@ class TasksController < ApplicationController
       end
     end
   end
+
   def edit
   end
+
   def update
     if @task.update(task_params)
       redirect_to tasks_path, notice: "タスクを編集しました"
@@ -45,19 +50,23 @@ class TasksController < ApplicationController
       render :edit
     end
   end
+
   def destroy
     @task.destroy
     redirect_to tasks_path, notice:"タスクを削除しました"
   end
+
   def confirm
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     render :new if @task.invalid?
   end
+
   private
   def set_task
     @task = Task.find(params[:id])
   end
+
   def task_params
-    params.require(:task).permit(:title, :content, :deadline, :status, :priority)
+    params.require(:task).permit(:title, :content, :deadline, :status, :priority, :user_id)
   end
 end
