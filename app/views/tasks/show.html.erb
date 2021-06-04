@@ -1,12 +1,24 @@
-<h1>タスク詳細画面</h1>
-<ul class="tasklist">
-  <li>
-    <p><span class="item_name">タスク名</span> <%= @task.title %></p>
-    <p><span class="item_name">内容</span> <%= @task.content %></p>
-    <p><span class="item_name">登録日時</span> <%= l @task.created_at, format: :long %></p>
-    <p><span class="item_name">終了期限</span> <%= l @task.deadline, format: :long %></p>
-    <p><span class="item_name">ステータス</span> <%= @task.status %></p>
-    <p><span class="item_name">優先順位</span> <%= @task.priority %></p>
-  </li>
-</ul>
-<p><%= link_to 'Back', tasks_path(@task) %></p>
+<article class="tasks_show">
+  <h2>タスク詳細</h2>
+  <ul class="tasklist">
+    <li>
+      <div class="upper">
+        <p><span class="item_name">タスク名</span> <%= @task.title %></p>
+        <p><span class="item_name">内容</span> <%= @task.content %></p>
+      </div>
+      <div class="lower">
+        <p><span class="item_name">登録日時</span> <%= l @task.created_at, format: :long %></p>
+        <p><span class="item_name">終了期限</span> <%= l @task.deadline, format: :long %></p>
+        <p><span class="item_name">ステータス</span> <%= @task.status %></p>
+        <p><span class="item_name">優先順位</span> <%= @task.priority %></p>
+      </div>
+      <div class="btns">
+        <div class="innerblock">
+          <%= link_to "タスクを編集する", edit_task_path(@task.id), data: { confirm: '本当に編集していいですか？' }, class: "edit_task" %>
+          <%= link_to 'タスクを削除する', task_path(@task.id), method: :delete ,data: { confirm: '本当に削除していいですか？' }, class: "delete_task" %>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <p class="goto_back"><%= link_to 'タスク一覧画面にもどる', tasks_path(@task) %></p>
+</article>

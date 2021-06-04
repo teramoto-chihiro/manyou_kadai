@@ -10,5 +10,7 @@ email = "tera@tera.com"
 password = "teratera"
 User.create!(name: name,
              email: email,
-             password_digest: password,
+             password: password,
+             password_confirmation: password,
+             admin: true
              )
