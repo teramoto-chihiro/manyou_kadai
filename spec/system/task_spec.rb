@@ -1,12 +1,16 @@
 require 'rails_helper'
 RSpec.describe 'タスク管理機能', type: :system do
-  let!(:task) { FactoryBot.create(:task, title: 'task', content: 'task', deadline: '2021-05-1 03:24:00') }
-  let!(:task2) { FactoryBot.create(:task, title: 'task2', content: 'task2', deadline: '2021-05-20 03:24:00') }
-  let!(:task3) { FactoryBot.create(:task, title: 'task3', content: 'task3', deadline: '2021-05-10 03:24:00') }
-  let!(:task) { FactoryBot.create(:task, title: 'task', content: 'task', deadline: '2021-05-1 03:24:00', status: 1, priority: 1) }
-  let!(:task2) { FactoryBot.create(:task, title: 'task2', content: 'task2', deadline: '2021-05-20 03:24:00', status: 2, priority: 2) }
-  let!(:task3) { FactoryBot.create(:task, title: 'task3', content: 'task3', deadline: '2021-05-10 03:24:00', status: 3, priority: 3) }
+  let(:user) { FactoryBot.create(:user) }
+  let!(:task) { FactoryBot.create(:task, user_id: user.id) }
+  let!(:task2) { FactoryBot.create(:task2, user_id: user.id) }
+  let!(:task3) { FactoryBot.create(:task3, user_id: user.id) }
   before do
+    visit new_session_path
+    fill_in "メールアドレス", with: "user1@example.com"
+    fill_in "パスワード", with: "password1"
+    within '.actions' do
+      click_on 'ログイン'
+    end
     visit tasks_path
   end
 
@@ -46,8 +50,9 @@ RSpec.describe 'タスク管理機能', type: :system do
         within '.sort_deadline' do
           click_on '終了期限でソートする'
         end
+        sleep(0.5)
         task_list = all('ul li')
-        expect(task_list[0]).to have_content 'task2'
+        expect(task_list[0]).to have_content 'task2_title'
       end
     end
     context 'タスクが優先順位の高い順に並んでいる場合' do
@@ -55,8 +60,9 @@ RSpec.describe 'タスク管理機能', type: :system do
         within '.sort_deadline' do
           click_on '優先順位でソートする'
         end
+        sleep(0.5)
         task_list = all('ul li')
-        expect(task_list[0]).to have_content 'task3'
+        expect(task_list[0]).to have_content 'task3_title'
       end
     end
   end
