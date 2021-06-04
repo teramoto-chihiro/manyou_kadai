@@ -1,4 +1,10 @@
 <article class="user_show">
   <h2><%= @user.name %>のページ</h2>
-  <p>メールアドレス: <%= @user.email %></p>
+  <section class="profile">
+    <p><span class="item_name">ID</span> <%= @user.id %></p>
+    <p><span class="item_name">名前</span> <%= @user.name %></p>
+    <p><span class="item_name">メールアドレス</span> <%= @user.email %></p>
+  </section>
+
+  <p class="goto_tasklist"><%= link_to 'タスク一覧を見る', tasks_path %></p>
 </article>
