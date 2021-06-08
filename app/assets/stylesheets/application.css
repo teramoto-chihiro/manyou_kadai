@@ -31,9 +31,9 @@
  }
 
  .header_area {
-   /* position: fixed; /* 固定 */
-   /* top: 0; /* 一番上に表示 */
-   /* width: 100%; /* 中央に表示 */
+   /* position: fixed; */
+   /* top: 0; */
+   /* width: 100%; */
  }
 
  .header_block {
@@ -53,9 +53,9 @@
  }
 
  .footer_area {
-   /* position: fixed; /* 固定 */
-   /* bottom: 0; /* 一番下に表示 */
-   /* width: 100%; /* 中央に表示 */
+   /* position: fixed; */
+   /* bottom: 0; */
+   /* width: 100%; */
  }
 
  .footer_block {
