@@ -30,6 +30,10 @@
    border-radius: 15px;
  }
 
+ .label_block .label {
+   padding: 0.3em 0.6em;
+ }
+
  .header_area {
    /* position: fixed; */
    /* top: 0; */
@@ -53,7 +57,7 @@
  }
 
  .footer_area {
-  /* position: fixed; /* 固定 */ 
+  /* position: fixed; /* 固定 */
   /* bottom: 0; /* 一番下に表示 */
   /* width: 100%; /* 中央に表示 */
 }

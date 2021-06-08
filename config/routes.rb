@@ -5,9 +5,5 @@ Rails.application.routes.draw do
    resources :users
   end
   root 'tasks#index'
-  resources :tasks do
-    collection do
-      post :confirm
-    end
-  end
+  resources :tasks
 end

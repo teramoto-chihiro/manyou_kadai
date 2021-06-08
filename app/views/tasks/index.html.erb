@@ -1,39 +1,56 @@
-<h2>タスク一覧</h2>
-<p><%= notice %></p>
-<p class="sort_deadline">
-  <%= link_to "終了期限でソートする", tasks_path(sort_deadline: "true") %>
-  <%= link_to "優先順位でソートする", tasks_path(sort_priority: "true") %>
-  <%= link_to "登録日が新しい順に戻す", tasks_path %>
-</p>
-<div class="search_box" >
-  <%= form_with(local: true, method: :get, url: tasks_path ) do |form| %>
-    <%= form.label :search_title, "タスク名" %>
-    <%= form.text_field :search_title, placeholder: "タスク名で検索" %>
-    <%= form.label :search_status, "ステータス" %>
-    <%= form.select :search_status, Task.statuses.keys, { include_blank: '選択してください'} %>
-    <%= form.submit "検索", name: "search" %>
+<article class="tasks_index">
+  <h2>タスク一覧</h2>
+  <% if notice %>
+  <p class="alert alert-info"><%= notice %></p>
   <% end %>
-</div>
-<ul class="tasklist">
-  <% @tasks.each do |task| %>
-  <li>
-    <p><span class="item_name">タスク名</span> <%= task.title %></p>
-    <p><span class="item_name">内容</span> <%= task.content %></p>
-    <p><span class="item_name">登録日時</span> <%= l task.created_at, format: :long %></p>
-    <p><span class="item_name">終了期限</span> <%= l task.deadline, format: :long %></p>
-    <p><span class="item_name">ステータス</span> <%= task.status %></p>
-    <p><span class="item_name">優先順位</span> <%= task.priority %></p>
-    <div class="label_block">
-      <% task.labels.each do |label| %>
-        <span><%= label.name %></span>
+  <p class="task_new"><%= link_to '新しくタスクを投稿する', new_task_path %></p>
+  <div class="task_nav">
+    <p class="sort_deadline flex">
+      <%= link_to "終了期限でソートする", tasks_path(sort_deadline: "true") %>
+      <%= link_to "優先順位でソートする", tasks_path(sort_priority: "true") %>
+      <%= link_to "登録日が新しい順に戻す", tasks_path %>
+    </p>
+    <div class="search_box" >
+      <%= form_with(local: true, method: :get, url: tasks_path ) do |form| %>
+        <p class="input"><%= form.label :search_title, "タスク名" %>
+        <%= form.text_field :search_title, placeholder: "タスク名で検索" %></p>
+        <p class="input"><%= form.label :search_status, "ステータス" %>
+        <%= form.select :search_status, Task.statuses.keys, { include_blank: '選択してください'} %></p>
+        <p class="input"><%= form.label :search_label, "ラベル" %>
+        <%= form.select :search_label, Label.pluck(:name, :id), { include_blank: '選択してください' } %></p>
+        <p class="input"><%= form.submit "検索", name: "search" %></p>
       <% end %>
     </div>
-    <p class="btns">
-      <%= link_to '詳細を確認する', task_path(task.id) %>
-      <%= link_to "タスクを編集する", edit_task_path(task.id), data: { confirm: '本当に編集していいですか？' } %>
-      <%= link_to 'タスクを削除する', task_path(task.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %>
-    </p>
-  </li>
-  <% end %>
-</ul>
-<p><%= link_to '新しくタスクを投稿する', new_task_path %></p>
+  </div>
+  <ul class="tasklist">
+    <% @tasks.each do |task| %>
+    <li>
+      <div class="upper">
+        <p><span class="item_name">タスク名</span> <%= task.title %></p>
+        <p><span class="item_name">内容</span> <%= task.content %></p>
+      </div>
+      <div class="lower">
+        <p><span class="item_name">登録日時</span> <%= l task.created_at, format: :long %></p>
+        <p><span class="item_name">終了期限</span> <%= l task.deadline, format: :long %></p>
+        <p><span class="item_name">ステータス</span> <%= task.status %></p>
+        <p><span class="item_name">優先順位</span> <%= task.priority %></p>
+        <div class="label_block">
+          <% task.labels.each do |label| %>
+            <span class="label label-success"><%= label.name %></span>
+          <% end %>
+        </div>
+      </div>
+      <div class="btns">
+        <div class="innerblock">
+          <%= link_to '詳細を確認する', task_path(task.id), class: "show_task" %>
+          <%= link_to "タスクを編集する", edit_task_path(task.id), class: "edit_task" %>
+          <%= link_to 'タスクを削除する', task_path(task.id), method: :delete ,data: { confirm: '本当に削除していいですか？' }, class: "delete_task" %>
+        </div>
+      </div>
+    </li>
+    <% end %>
+  </ul>
+  <div class="pagination_block">
+    <%= paginate @tasks %>
+  </div>
+</article>

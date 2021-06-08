@@ -1,39 +1,43 @@
-<%= form_with(model: @task, local: true ,url: choose_new_or_edit ) do |form| %>
-  <% if @task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= @task.errors.count %>件のエラーがあります。</h2>
-      <ul>
-      <% @task.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<section class="form_block">
+  <%= form_with(model: @task, local: true) do |form| %>
+    <% if @task.errors.any? %>
+      <div id="error_explanation" class="alert alert-warning">
+        <h3><%= @task.errors.count %>件のエラーがあります。</h3>
+        <ul>
+        <% @task.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="field">
+      <%= form.label :title %>
+      <%= form.text_field :title %>
+    </div>
+    <div class="field">
+      <%= form.label :content %>
+      <%= form.text_area :content %>
+    </div>
+    <div class="field">
+      <%= form.label :deadline %>
+      <%= form.datetime_select :deadline %>
+    </div>
+    <div class="field">
+      <%= form.label :status %>
+      <%= form.select :status, Task.statuses.keys %>
+    </div>
+    <div class="field">
+      <%= form.label :priority %>
+      <%= form.select :priority, Task.priorities.keys %>
+    </div>
+    <div class="field check_box">
+      <%= form.collection_check_boxes(:label_ids, Label.all, :id, :name) do |b|
+        b.label(:"data-value" => b.value) { b.check_box + b.text }
+      end %>
+    </div>
+    <div class="actions">
+      <%= form.submit "登録する", data: { confirm: "本当に登録していいですか？"} %>
     </div>
   <% end %>
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
-  <div class="field">
-    <%= form.label :deadline %>
-    <%= form.datetime_select :deadline %>
-  </div>
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.select :status, Task.statuses.keys %>
-  </div>
-  <div class="field">
-    <%= form.label :priority %>
-    <%= form.select :priority, Task.priorities.keys %>
-  </div>
-  <div class="field">
-    <%= form.collection_check_boxes(:label_ids, Label.all, :id, :name) %>
-  </div>
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
-<p><%= link_to "タスク一覧画面にもどる", tasks_path %></p>
+  <p class="goto_back"><%= link_to "タスク一覧画面にもどる", tasks_path %></p>
+</section>
