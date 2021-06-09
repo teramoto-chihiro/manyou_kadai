@@ -39,3 +39,5 @@ gem 'kaminari'
 gem 'kaminari-bootstrap', '~> 3.0.1'
 
 gem 'bcrypt', '3.1.11'
+
+gem 'faker'
