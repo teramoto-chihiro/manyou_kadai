@@ -3,13 +3,16 @@
   <% if notice %>
   <p class="alert alert-info"><%= notice %></p>
   <% end %>
+
   <p class="task_new"><%= link_to '新しくタスクを投稿する', new_task_path %></p>
+
   <div class="task_nav">
     <p class="sort_deadline flex">
       <%= link_to "終了期限でソートする", tasks_path(sort_deadline: "true") %>
       <%= link_to "優先順位でソートする", tasks_path(sort_priority: "true") %>
       <%= link_to "登録日が新しい順に戻す", tasks_path %>
     </p>
+
     <div class="search_box" >
       <%= form_with(local: true, method: :get, url: tasks_path ) do |form| %>
         <p class="input"><%= form.label :search_title, "タスク名" %>
@@ -22,6 +25,7 @@
       <% end %>
     </div>
   </div>
+
   <ul class="tasklist">
     <% @tasks.each do |task| %>
     <li>

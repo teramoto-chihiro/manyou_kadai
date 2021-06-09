@@ -5,7 +5,6 @@ FactoryBot.define do
     deadline { '2021-05-1 03:24:00' }
     status { 1 }
     priority { 1 }
-    # association :user
   end
   factory :task2, class: "Task" do
     title { 'task2_title' }
@@ -13,6 +12,10 @@ FactoryBot.define do
     deadline { '2021-05-20 03:24:00' }
     status { 2 }
     priority { 2 }
+    after(:build) do |task2|
+      label2 = create(:label2)
+      task2.labellings << build(:labelling, task: task2, label: label2)
+    end
   end
   factory :task3, class: "Task" do
     title { 'task3_title' }
